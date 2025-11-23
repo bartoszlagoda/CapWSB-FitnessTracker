@@ -1,17 +1,23 @@
 package pl.wsb.fitnesstracker.event;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import pl.wsb.fitnesstracker.user.api.User;
 
 @Entity
-@Table(name = "User_Event")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
+@Table(
+        name = "User_Event",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_user_event",
+                        columnNames = {"user_id", "event_id"}
+                )
+        }
+)
+@Data
 public class UserEvent {
 
     @Id

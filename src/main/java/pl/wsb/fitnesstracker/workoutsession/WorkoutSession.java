@@ -19,9 +19,11 @@ public class WorkoutSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Nullable
     private int id;
+
     @ManyToOne
-    @JoinColumn(name = "training_id", referencedColumnName = "id")
-    private Training trainingId;
+    @JoinColumn(name = "training_id", nullable = false)
+    private Training training;
+
     @Column(name = "timestamp")
     private String timestamp;
     @Column(name = "startLatitude")
@@ -35,8 +37,8 @@ public class WorkoutSession {
     @Column(name = "altitude")
     private double altitude;
 
-    public WorkoutSession(Training trainingId, String timestamp, double startLatitude, double startLongitude, double endLatitude, double endLongitude, double altitude) {
-        this.trainingId = trainingId;
+    public WorkoutSession(Training training, String timestamp, double startLatitude, double startLongitude, double endLatitude, double endLongitude, double altitude) {
+        this.training = training;
         this.timestamp = timestamp;
         this.startLatitude = startLatitude;
         this.startLongitude = startLongitude;
