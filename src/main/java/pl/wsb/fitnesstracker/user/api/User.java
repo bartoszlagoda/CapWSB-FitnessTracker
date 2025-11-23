@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import pl.wsb.fitnesstracker.event.UserEvent;
 import pl.wsb.fitnesstracker.healthmetrics.api.Healthmetrics;
 import pl.wsb.fitnesstracker.statistics.api.Statistics;
 
@@ -26,10 +27,10 @@ public class User {
     @Nullable
     private Long id;
 
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "birthdate", nullable = false)
@@ -37,6 +38,9 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<UserEvent> userEvents = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Healthmetrics> healthmetrics = new ArrayList<>();
