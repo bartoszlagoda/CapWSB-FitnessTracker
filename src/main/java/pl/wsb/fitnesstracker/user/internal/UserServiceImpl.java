@@ -16,6 +16,7 @@ import java.util.Optional;
 class UserServiceImpl implements UserService, UserProvider {
 
     private final UserRepository userRepository;
+    private final UserCustomRepository userCustomRepository;
 
     @Override
     public User createUser(final User user) {
@@ -25,6 +26,10 @@ class UserServiceImpl implements UserService, UserProvider {
         }
         return userRepository.save(user);
     }
+
+//    public List<User> searchUsersByEmail(String fragment) {
+//        return List.of();
+//    }
 
     @Override
     public Optional<User> getUser(final Long userId) {
@@ -39,6 +44,10 @@ class UserServiceImpl implements UserService, UserProvider {
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    public List<User> findUsersByName(String name) {
+        return userCustomRepository.findUsersByName(name);
     }
 
 }
