@@ -28,9 +28,10 @@ class UserController {
     private final UserMapper userMapper;
 
     private final UserProvider userProvider;
-    public UserController(UserServiceImpl userService, UserMapper userMapper) {
+    public UserController(UserServiceImpl userService, UserMapper userMapper, UserProvider userProvider) {
         this.userService = userService;
         this.userMapper = userMapper;
+        this.userProvider = userProvider;
     }
 
     @GetMapping
