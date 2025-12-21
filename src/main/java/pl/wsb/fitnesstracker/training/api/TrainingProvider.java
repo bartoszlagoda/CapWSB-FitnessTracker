@@ -18,5 +18,11 @@ public interface TrainingProvider {
      * @return list of all trainings
      */
     List<Training> findAllTrainings();
+    /**
+     * Retrieves all trainings for a specific user.
+     * @param userId the id of the user
+     * @return list of trainings belonging to the user
+     */
+    List<Training> getTrainingsByUserId(Long userId);
 
 }

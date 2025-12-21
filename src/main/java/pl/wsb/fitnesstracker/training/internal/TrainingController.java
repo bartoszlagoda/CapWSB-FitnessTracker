@@ -2,6 +2,7 @@ package pl.wsb.fitnesstracker.training.internal;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wsb.fitnesstracker.training.api.TrainingDto;
@@ -20,6 +21,14 @@ public class TrainingController {
     @GetMapping
     public List<TrainingDto> getAllTrainings() {
         return trainingService.findAllTrainings()
+                .stream()
+                .map(trainingMapper::toDto)
+                .toList();
+    }
+
+    @GetMapping("/{userId}")
+    public List<TrainingDto> getTrainingsByUserId(@PathVariable Long userId) {
+        return trainingService.getTrainingsByUserId(userId)
                 .stream()
                 .map(trainingMapper::toDto)
                 .toList();

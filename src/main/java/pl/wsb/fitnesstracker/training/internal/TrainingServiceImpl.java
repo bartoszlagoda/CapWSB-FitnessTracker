@@ -22,6 +22,11 @@ public class TrainingServiceImpl implements TrainingProvider {
     }
 
     @Override
+    public List<Training> getTrainingsByUserId(Long userId) {
+        return trainingRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public Optional<Training> getTraining(final Long trainingId) {
         throw new UnsupportedOperationException("Not finished yet");
     }
