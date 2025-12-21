@@ -7,6 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.wsb.fitnesstracker.user.api.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pl.wsb.fitnesstracker.user.api.UserDto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,7 +21,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/v1/users")
-@RequiredArgsConstructor
 class UserController {
 
     private final UserServiceImpl userService;
@@ -25,6 +28,10 @@ class UserController {
     private final UserMapper userMapper;
 
     private final UserProvider userProvider;
+    public UserController(UserServiceImpl userService, UserMapper userMapper) {
+        this.userService = userService;
+        this.userMapper = userMapper;
+    }
 
     @GetMapping
     public List<UserDto> getAllUsers() {
